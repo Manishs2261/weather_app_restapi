@@ -31,6 +31,9 @@ class DemoProvider with ChangeNotifier {
   var _day2_text;
   var _regionn;
   var _countryy;
+  var _name_of_city;
+
+  get name_of_city => _name_of_city;
 
   get regionn => _regionn;
   get countryy => _countryy;
@@ -84,11 +87,11 @@ class DemoProvider with ChangeNotifier {
   get chanceToRain => _chanceToRain;
 
 
-  Future<void> settemp(String tempp) async {
-    print("set $tempp");
-    Weaather a = await Repo().getWeather(tempp);
-    // var aa = (a.current!.tempC)?.toInt();
+  Future<void> settemp(String city) async {
 
+    Weaather a = await Repo().getWeather(city);
+    // var aa = (a.current!.tempC)?.toInt();
+     _name_of_city = (a.location?.name);
     _temp_c = (a.current?.tempC)?.toInt();
     _pressure = a.current?.pressureMb;
     _humidity = a.current?.humidity;
@@ -115,8 +118,8 @@ class DemoProvider with ChangeNotifier {
     _regionn = a.location?.region;
     _countryy = a.location?.country;
 
-    print(_regionn);
-    print(_countryy);
+
+
 
 
     notifyListeners();
