@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weatherapi/src/demo.dart';
+
 import 'package:weatherapi/src/view/home/home_screen.dart';
 import 'package:weatherapi/src/view/splash_screen/splash.dart';
 import 'package:weatherapi/src/view_model_provider/demoprovider.dart';
@@ -31,9 +31,9 @@ class MyApp extends StatelessWidget {
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
             ),
-            home: //Demo(),
-             HomeScreen(""),
-            //SplashScreen(),
+            home:
+             //HomeScreen(),
+            SplashScreen(),
           );
         },
       ),
