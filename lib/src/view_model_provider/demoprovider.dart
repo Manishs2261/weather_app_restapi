@@ -3,7 +3,6 @@ import 'package:weatherapi/src/model/weatherModel.dart';
 import 'package:weatherapi/src/respository/repo.dart';
 
 class DemoProvider with ChangeNotifier {
-
   var _sunrise;
   var _sunset;
   var _moonrise;
@@ -36,6 +35,7 @@ class DemoProvider with ChangeNotifier {
   get name_of_city => _name_of_city;
 
   get regionn => _regionn;
+
   get countryy => _countryy;
 
   get day0_text => _day0_text;
@@ -43,7 +43,6 @@ class DemoProvider with ChangeNotifier {
   get day1_text => _day1_text;
 
   get day2_text => _day2_text;
-
 
   get day1_mintemp_c => _day1_mintemp_c;
 
@@ -60,7 +59,6 @@ class DemoProvider with ChangeNotifier {
   get day1_image => _day1_image;
 
   get day2_image => _day2_image;
-
 
   get sunrise => _sunrise;
 
@@ -86,12 +84,10 @@ class DemoProvider with ChangeNotifier {
 
   get chanceToRain => _chanceToRain;
 
-
   Future<void> settemp(String city) async {
-
     Weaather a = await Repo().getWeather(city);
     // var aa = (a.current!.tempC)?.toInt();
-     _name_of_city = (a.location?.name);
+    _name_of_city = (a.location?.name);
     _temp_c = (a.current?.tempC)?.toInt();
     _pressure = a.current?.pressureMb;
     _humidity = a.current?.humidity;
@@ -118,12 +114,6 @@ class DemoProvider with ChangeNotifier {
     _regionn = a.location?.region;
     _countryy = a.location?.country;
 
-
-
-
-
     notifyListeners();
   }
-
-
 }
