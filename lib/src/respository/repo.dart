@@ -14,11 +14,17 @@ class Repo{
      try{
        if(res.statusCode == 200)
          {
+           print("Manish");
+
            return Weaather.fromJson(json.decode(resBody));
+
          }
      }catch(e)
     {
+      print("url error  $e");
       throw e;
+
+
     }
 
   }

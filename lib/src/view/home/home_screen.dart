@@ -6,13 +6,15 @@ import 'package:weatherapi/src/view_model_provider/demoprovider.dart';
 import 'package:geolocator/geolocator.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
   var namecity;
-  TextEditingController _cityController = TextEditingController();
+  TextEditingController _cityController = TextEditingController(text: "Bilaspur");
 
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
@@ -38,14 +40,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
     if (permission == LocationPermission.deniedForever) {
       // Permissions are denied forever, handle appropriately.
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
+      return Future.error('Location permissions are permanently denied, we cannot request permissions.');
     }
 
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
-    return await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
+    return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
   }
 
   Placemark? place;
@@ -53,8 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Position? position;
 
   Future<void> GetAddressFromLatLong(Position position) async {
-    List<Placemark> placemark =
-        await placemarkFromCoordinates(position.latitude, position.longitude);
+    List<Placemark> placemark = await placemarkFromCoordinates(position.latitude, position.longitude);
 
     //print(placemark);
     place = placemark[0];
@@ -92,32 +91,26 @@ class _HomeScreenState extends State<HomeScreen> {
                       appBar: PreferredSize(
                           preferredSize: Size.fromHeight(130),
                           child: Padding(
-                            padding: const EdgeInsets.only(
-                                top: 10, left: 5, right: 10),
+                            padding: const EdgeInsets.only(top: 10, left: 5, right: 10),
                             child: Column(
                               children: [
                                 Consumer<DemoProvider>(
-                                  builder:
-                                      (BuildContext context, value, child) {
+                                  builder: (BuildContext context, value, child) {
                                     return Text(
                                       "${value.name_of_city}",
-                                      style: TextStyle(
-                                          fontSize: 25, color: Colors.white),
+                                      style: TextStyle(fontSize: 25, color: Colors.white),
                                     );
                                   },
                                 ),
-                                Consumer<DemoProvider>(builder:
-                                    (BuildContext context, value, child) {
+                                Consumer<DemoProvider>(builder: (BuildContext context, value, child) {
                                   return Text(
                                     "${value.regionn} , ${value.countryy}",
-                                    style: TextStyle(
-                                        fontSize: 13, color: Colors.white),
+                                    style: TextStyle(fontSize: 13, color: Colors.white),
                                   );
                                   ;
                                 }),
                                 Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 20, right: 20, top: 10),
+                                  padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
                                   child: TextFormField(
                                     controller: _cityController,
                                     textInputAction: TextInputAction.search,
@@ -131,9 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       contentPadding: EdgeInsets.only(top: 15),
                                       hintText: "Enter city and country name",
                                       prefixIcon: Icon(Icons.search),
-                                      border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(50)),
+                                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(50)),
                                     ),
                                   ),
                                 ),
@@ -158,17 +149,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                         child: Stack(
                                           children: [
                                             Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 40),
+                                                padding: const EdgeInsets.only(left: 40),
                                                 child: Consumer<DemoProvider>(
-                                                    builder:
-                                                        (BuildContext context,
-                                                            value, child) {
+                                                    builder: (BuildContext context, value, child) {
                                                   return Text(
                                                     "${value.temp_c}°  ",
-                                                    style: TextStyle(
-                                                        fontSize: 80,
-                                                        color: Colors.white),
+                                                    style: TextStyle(fontSize: 80, color: Colors.white),
                                                   );
                                                 })),
                                             Positioned(
@@ -177,52 +163,37 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 child: Text(
                                                   "C",
                                                   style: TextStyle(
-                                                      fontSize: 34,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Colors.white),
+                                                      fontSize: 34, fontWeight: FontWeight.bold, color: Colors.white),
                                                 )),
                                           ],
                                         ),
                                       ),
                                     ),
-                                    Consumer<DemoProvider>(builder:
-                                        (BuildContext context, value, child) {
+                                    Consumer<DemoProvider>(builder: (BuildContext context, value, child) {
                                       return Text(
                                         "Cloudy ${value.maxtemp}°/${value.mintemp}°",
-                                        style: TextStyle(
-                                            fontSize: 25, color: Colors.white),
+                                        style: TextStyle(fontSize: 25, color: Colors.white),
                                       );
                                     }),
                                     SizedBox(
                                       height: 20,
                                     ),
                                     Container(
-                                      padding: EdgeInsets.only(
-                                          left: 5, right: 5, top: 3, bottom: 3),
+                                      padding: EdgeInsets.only(left: 5, right: 5, top: 3, bottom: 3),
                                       width: 100,
-                                      decoration: BoxDecoration(
-                                          color: Colors.white24,
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
+                                      decoration:
+                                          BoxDecoration(color: Colors.white24, borderRadius: BorderRadius.circular(10)),
                                       child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
-                                          Icon(
-                                              Icons
-                                                  .energy_savings_leaf_outlined,
-                                              color: Colors.white),
+                                          Icon(Icons.energy_savings_leaf_outlined, color: Colors.white),
                                           SizedBox(
                                             width: 5,
                                           ),
                                           Text(
                                             "AQI 11",
-                                            style: TextStyle(
-                                                fontSize: 17,
-                                                color: Colors.white),
+                                            style: TextStyle(fontSize: 17, color: Colors.white),
                                           ),
                                         ],
                                       ),
@@ -235,14 +206,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
-                                      padding: EdgeInsets.only(
-                                          left: 13, right: 13, top: 10),
+                                      padding: EdgeInsets.only(left: 13, right: 13, top: 10),
                                       width: double.infinity,
                                       height: 250,
                                       decoration: BoxDecoration(
                                           color: Colors.blueGrey.shade600,
-                                          borderRadius:
-                                              BorderRadius.circular(10),
+                                          borderRadius: BorderRadius.circular(10),
                                           boxShadow: [
                                             BoxShadow(
                                               color: Colors.grey,
@@ -251,22 +220,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                             ),
                                           ]),
                                       child: Consumer<DemoProvider>(
-                                        builder: (BuildContext context, value,
-                                            child) {
+                                        builder: (BuildContext context, value, child) {
                                           return Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
+                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                             children: [
-                                              ReuseRow(
-                                                  "Today ",
-                                                  "${value.maxtemp}°/${value.mintemp}°",
-                                                  "https:${value.day0_image}",
-                                                  "${value.day0_text}"),
-                                              ReuseRow(
-                                                  "Tomorrow ",
-                                                  "${value.day1_maxtemp_c}°/${value.day1_mintemp_c}°",
-                                                  "https:${value.day1_image}",
-                                                  "${value.day1_text}"),
+                                              ReuseRow("Today ", "${value.maxtemp}°/${value.mintemp}°",
+                                                  "https:${value.day0_image}", "${value.day0_text}"),
+                                              ReuseRow("Tomorrow ", "${value.day1_maxtemp_c}°/${value.day1_mintemp_c}°",
+                                                  "https:${value.day1_image}", "${value.day1_text}"),
                                               ReuseRow(
                                                   "${value.day2_date}",
                                                   "${value.day2_maxtemp_c}°/${value.day2_mintemp_c}°",
@@ -282,8 +243,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
-                                  padding: EdgeInsets.only(
-                                      left: 30, right: 30, top: 10),
+                                  padding: EdgeInsets.only(left: 30, right: 30, top: 10),
                                   width: double.infinity,
                                   height: 200,
                                   decoration: BoxDecoration(
@@ -297,24 +257,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                         ),
                                       ]),
                                   child: Consumer<DemoProvider>(
-                                    builder:
-                                        (BuildContext contect, value, child) {
+                                    builder: (BuildContext contect, value, child) {
                                       return Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
+                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                         children: [
-                                          ReuseRowBelow(
-                                              title: "Sunrise",
-                                              num: "${value.sunrise}"),
-                                          ReuseRowBelow(
-                                              title: "Sunset",
-                                              num: "${value.sunset}"),
-                                          ReuseRowBelow(
-                                              title: "Moonrise",
-                                              num: "${value.moonrise}"),
-                                          ReuseRowBelow(
-                                              title: "Moonset",
-                                              num: "${value.moonset}"),
+                                          ReuseRowBelow(title: "Sunrise", num: "${value.sunrise}"),
+                                          ReuseRowBelow(title: "Sunset", num: "${value.sunset}"),
+                                          ReuseRowBelow(title: "Moonrise", num: "${value.moonrise}"),
+                                          ReuseRowBelow(title: "Moon set", num: "${value.moonset}"),
                                         ],
                                       );
                                     },
@@ -323,8 +273,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
-                                padding: EdgeInsets.only(
-                                    left: 30, right: 30, top: 10),
+                                padding: EdgeInsets.only(left: 30, right: 30, top: 10),
                                 width: double.infinity,
                                 height: 250,
                                 decoration: BoxDecoration(
@@ -338,11 +287,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ]),
                                 child: Consumer<DemoProvider>(
-                                  builder:
-                                      (BuildContext context, value, child) {
+                                  builder: (BuildContext context, value, child) {
                                     return Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                       children: [
                                         ReuseRowBelow(
                                           title: 'Humidity',
@@ -352,8 +299,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           title: 'Real Feel',
                                           num: "${value.realFell}°",
                                         ),
-                                        ReuseRowBelow(
-                                            title: 'UV', num: "${value.uv}"),
+                                        ReuseRowBelow(title: 'UV', num: "${value.uv}"),
                                         ReuseRowBelow(
                                           title: 'Pressure',
                                           num: "${value.pressure}",
@@ -434,14 +380,23 @@ class ReuseRow extends StatelessWidget {
             Text(
               title,
               style: TextStyle(fontSize: 18, color: Colors.white),
+              softWrap: true,
+              overflow: TextOverflow.ellipsis,
             ),
             Text(
               title1,
               style: TextStyle(fontSize: 16, color: Colors.white),
+              softWrap: true,
+              overflow: TextOverflow.ellipsis,
             ),
           ],
         ),
-        Text(temp, style: TextStyle(fontSize: 18, color: Colors.white)),
+        Text(
+          temp,
+          style: TextStyle(fontSize: 18, color: Colors.white),
+          softWrap: true,
+          overflow: TextOverflow.ellipsis,
+        ),
       ],
     );
   }

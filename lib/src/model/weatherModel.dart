@@ -270,25 +270,25 @@ class Forecastday {
 }
 
 class Day {
-  double? maxtempC;
-  double? maxtempF;
-  double? mintempC;
-  double? mintempF;
-  double? avgtempC;
-  double? avgtempF;
-  double? maxwindMph;
-  double? maxwindKph;
-  double? totalprecipMm;
-  double? totalprecipIn;
+  var maxtempC;
+  var maxtempF;
+  var mintempC;
+  var mintempF;
+  var avgtempC;
+  var avgtempF;
+  var maxwindMph;
+  var maxwindKph;
+  var totalprecipMm;
+  var totalprecipIn;
   var totalsnowCm;
-  double? avgvisKm;
+  var avgvisKm;
   var avgvisMiles;
   var avghumidity;
   var dailyWillItRain;
   var dailyChanceOfRain;
   var dailyWillItSnow;
   var dailyChanceOfSnow;
-  Condition? condition;
+  var condition;
   var uv;
 
   Day(
@@ -367,12 +367,12 @@ class Day {
 }
 
 class Astro {
-  String? sunrise;
-  String? sunset;
-  String? moonrise;
-  String? moonset;
-  String? moonPhase;
-  String? moonIllumination;
+  var sunrise;
+  var sunset;
+  var moonrise;
+  var moonset;
+  var moonPhase;
+  var moonIllumination;
   var isMoonUp;
   var isSunUp;
 
@@ -413,37 +413,37 @@ class Astro {
 
 class Hour {
   var timeEpoch;
-  String? time;
-  double? tempC;
-  double? tempF;
+  var time;
+  var tempC;
+  var tempF;
   var isDay;
-  Condition? condition;
-  double? windMph;
-  double? windKph;
+  var condition;
+  var windMph;
+  var windKph;
   var windDegree;
-  String? windDir;
+  var windDir;
   var pressureMb;
-  double? pressureIn;
-  double? precipMm;
-  double? precipIn;
+  var pressureIn;
+  var precipMm;
+  var precipIn;
   var humidity;
   var cloud;
-  double? feelslikeC;
-  double? feelslikeF;
-  double? windchillC;
-  double? windchillF;
-  double? heatindexC;
-  double? heatindexF;
-  double? dewpointC;
-  double? dewpointF;
+  var feelslikeC;
+  var feelslikeF;
+  var windchillC;
+  var windchillF;
+  var heatindexC;
+  var heatindexF;
+  var dewpointC;
+  var dewpointF;
   var willItRain;
   var chanceOfRain;
   var willItSnow;
   var chanceOfSnow;
   var visKm;
   var visMiles;
-  double? gustMph;
-  double? gustKph;
+  var gustMph;
+  var gustKph;
   var uv;
 
   Hour(
