@@ -1,16 +1,9 @@
+
+https://github.com/Manishs2261/weather_app_restapi/assets/122163664/9751e4e6-f13a-4bda-8328-3090f0987482
 # weatherapi
 
-A new Flutter project.
+This is my first Flutter project.
 
-## Getting Started
+## Output
+ Uploading 02117430-16a0-48d5-855c-6a29e032a1ac.mp4…
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
