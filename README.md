@@ -16,5 +16,8 @@ The Weather App is a Flutter application that allows users to check the weather 
 
 ## Screenshots
 
- ![Screenshot_2023-12-22-10-57-22-333_com example weatherapi](https://github.com/Manishs2261/weather_app_restapi/assets/122163664/9bf20d86-f4ff-4e04-a132-afafb4ee4f17)
-![Screenshot_2023-12-22-10-57-26-820_com example weatherapi (1)](https://github.com/Manishs2261/weather_app_restapi/assets/122163664/db8be8b4-0271-43a4-8bcb-a4f2de63f81c)
+<img src="https://github.com/Manishs2261/weather_app_restapi/raw/main/assets/122163664/9bf20d86-f4ff-4e04-a132-afafb4ee4f17.png" alt="Screenshot 1" width="300" height="600">
+
+<img src="https://github.com/Manishs2261/weather_app_restapi/raw/main/assets/122163664/db8be8b4-0271-43a4-8bcb-a4f2de63f81c.png" alt="Screenshot 2" width="300" height="600">
+
+ 
