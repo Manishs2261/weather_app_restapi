@@ -14,7 +14,9 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   var namecity;
-  TextEditingController _cityController = TextEditingController(text: "Bilaspur");
+  Placemark? place ;
+  Position? position;
+  TextEditingController _cityController = TextEditingController();
 
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
@@ -48,36 +50,42 @@ class _HomeScreenState extends State<HomeScreen> {
     return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
   }
 
-  Placemark? place;
 
-  Position? position;
 
   Future<void> GetAddressFromLatLong(Position position) async {
     List<Placemark> placemark = await placemarkFromCoordinates(position.latitude, position.longitude);
 
-    //print(placemark);
+
     place = placemark[0];
+    print(place?.locality);
   }
 
   Future<void> getPositionn() async {
     // This is your function
     position = await _determinePosition();
     GetAddressFromLatLong(position!);
+
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getPositionn();
+
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    getPositionn();
-
     final demop = Provider.of<DemoProvider>(context, listen: false);
+    print('${place?.locality}');
     demop.settemp('${place?.locality}');
 
-    print("build");
 
     return FutureBuilder(
         future: getPositionn(),
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
+          if (snapshot.connectionState == ConnectionState.done ) {
             return RefreshIndicator(
               color: Colors.black,
               backgroundColor: Colors.white,
