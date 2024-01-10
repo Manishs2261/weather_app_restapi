@@ -14,7 +14,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   var namecity;
-  Placemark? place ;
+  Placemark? place;
+
   Position? position;
   TextEditingController _cityController = TextEditingController();
 
@@ -50,11 +51,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
   }
 
-
-
   Future<void> GetAddressFromLatLong(Position position) async {
     List<Placemark> placemark = await placemarkFromCoordinates(position.latitude, position.longitude);
-
 
     place = placemark[0];
     print(place?.locality);
@@ -64,7 +62,6 @@ class _HomeScreenState extends State<HomeScreen> {
     // This is your function
     position = await _determinePosition();
     GetAddressFromLatLong(position!);
-
   }
 
   @override
@@ -81,11 +78,10 @@ class _HomeScreenState extends State<HomeScreen> {
     print('${place?.locality}');
     demop.settemp('${place?.locality}');
 
-
     return FutureBuilder(
         future: getPositionn(),
         builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done ) {
+          if (snapshot.connectionState == ConnectionState.done) {
             return RefreshIndicator(
               color: Colors.black,
               backgroundColor: Colors.white,
