@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  var namecity;
+  var nameCity;
   Placemark? place;
 
   Position? position;
