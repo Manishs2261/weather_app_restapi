@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Placemark? place;
 
   Position? position;
-  TextEditingController _cityController = TextEditingController();
+  final TextEditingController _cityController = TextEditingController();
 
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
@@ -55,7 +56,9 @@ class _HomeScreenState extends State<HomeScreen> {
     List<Placemark> placemark = await placemarkFromCoordinates(position.latitude, position.longitude);
 
     place = placemark[0];
-    print(place?.locality);
+    if (kDebugMode) {
+      print(place?.locality);
+    }
   }
 
   Future<void> getPositionn() async {
@@ -75,7 +78,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final demop = Provider.of<DemoProvider>(context, listen: false);
-    print('${place?.locality}');
+    if (kDebugMode) {
+      print('${place?.locality}');
+    }
     demop.settemp('${place?.locality}');
 
     return FutureBuilder(
@@ -93,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Scaffold(
                       backgroundColor: Colors.blueGrey[600],
                       appBar: PreferredSize(
-                          preferredSize: Size.fromHeight(130),
+                          preferredSize: const Size.fromHeight(130),
                           child: Padding(
                             padding: const EdgeInsets.only(top: 10, left: 5, right: 10),
                             child: Column(
@@ -102,16 +107,15 @@ class _HomeScreenState extends State<HomeScreen> {
                                   builder: (BuildContext context, value, child) {
                                     return Text(
                                       "${value.name_of_city}",
-                                      style: TextStyle(fontSize: 25, color: Colors.white),
+                                      style: const TextStyle(fontSize: 25, color: Colors.white),
                                     );
                                   },
                                 ),
                                 Consumer<DemoProvider>(builder: (BuildContext context, value, child) {
                                   return Text(
                                     "${value.regionn} , ${value.countryy}",
-                                    style: TextStyle(fontSize: 13, color: Colors.white),
+                                    style: const TextStyle(fontSize: 13, color: Colors.white),
                                   );
-                                  ;
                                 }),
                                 Padding(
                                   padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
@@ -125,9 +129,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                     decoration: InputDecoration(
                                       fillColor: Colors.white,
                                       filled: true,
-                                      contentPadding: EdgeInsets.only(top: 15),
+                                      contentPadding: const EdgeInsets.only(top: 15),
                                       hintText: "Enter city and country name",
-                                      prefixIcon: Icon(Icons.search),
+                                      prefixIcon: const Icon(Icons.search),
                                       border: OutlineInputBorder(borderRadius: BorderRadius.circular(50)),
                                     ),
                                   ),
@@ -138,7 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       body: SingleChildScrollView(
                         child: Column(
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               height: 30,
                             ),
                             Column(
@@ -158,10 +162,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     builder: (BuildContext context, value, child) {
                                                   return Text(
                                                     "${value.temp_c}°  ",
-                                                    style: TextStyle(fontSize: 80, color: Colors.white),
+                                                    style: const TextStyle(fontSize: 80, color: Colors.white),
                                                   );
                                                 })),
-                                            Positioned(
+                                            const Positioned(
                                                 left: 160,
                                                 top: 30,
                                                 child: Text(
@@ -176,18 +180,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Consumer<DemoProvider>(builder: (BuildContext context, value, child) {
                                       return Text(
                                         "Cloudy ${value.maxtemp}°/${value.mintemp}°",
-                                        style: TextStyle(fontSize: 25, color: Colors.white),
+                                        style: const TextStyle(fontSize: 25, color: Colors.white),
                                       );
                                     }),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 20,
                                     ),
                                     Container(
-                                      padding: EdgeInsets.only(left: 5, right: 5, top: 3, bottom: 3),
+                                      padding: const EdgeInsets.only(left: 5, right: 5, top: 3, bottom: 3),
                                       width: 100,
                                       decoration:
                                           BoxDecoration(color: Colors.white24, borderRadius: BorderRadius.circular(10)),
-                                      child: Row(
+                                      child: const Row(
                                         crossAxisAlignment: CrossAxisAlignment.center,
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
@@ -204,19 +208,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 110,
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
-                                      padding: EdgeInsets.only(left: 13, right: 13, top: 10),
+                                      padding: const EdgeInsets.only(left: 13, right: 13, top: 10),
                                       width: double.infinity,
                                       height: 250,
                                       decoration: BoxDecoration(
                                           color: Colors.blueGrey.shade600,
                                           borderRadius: BorderRadius.circular(10),
-                                          boxShadow: [
+                                          boxShadow: const [
                                             BoxShadow(
                                               color: Colors.grey,
                                               blurRadius: 2,
@@ -247,13 +251,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
-                                  padding: EdgeInsets.only(left: 30, right: 30, top: 10),
+                                  padding: const EdgeInsets.only(left: 30, right: 30, top: 10),
                                   width: double.infinity,
                                   height: 200,
                                   decoration: BoxDecoration(
                                       color: Colors.blueGrey.shade600,
                                       borderRadius: BorderRadius.circular(10),
-                                      boxShadow: [
+                                      boxShadow: const [
                                         BoxShadow(
                                           color: Colors.grey,
                                           blurRadius: 2,
@@ -277,13 +281,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Container(
-                                padding: EdgeInsets.only(left: 30, right: 30, top: 10),
+                                padding: const EdgeInsets.only(left: 30, right: 30, top: 10),
                                 width: double.infinity,
                                 height: 250,
                                 decoration: BoxDecoration(
                                     color: Colors.blueGrey.shade600,
                                     borderRadius: BorderRadius.circular(10),
-                                    boxShadow: [
+                                    boxShadow: const [
                                       BoxShadow(
                                         color: Colors.grey,
                                         blurRadius: 2,
@@ -325,7 +329,7 @@ class _HomeScreenState extends State<HomeScreen> {
           } else {
             return Scaffold(
               backgroundColor: Colors.blueGrey[600],
-              body: Center(
+              body: const Center(
                   child: CircularProgressIndicator(
                 color: Colors.white,
               )),
@@ -339,7 +343,7 @@ class ReuseRowBelow extends StatelessWidget {
   String title;
   String num;
 
-  ReuseRowBelow({required this.title, required this.num});
+  ReuseRowBelow({super.key, required this.title, required this.num});
 
   @override
   Widget build(BuildContext context) {
@@ -350,15 +354,15 @@ class ReuseRowBelow extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(fontSize: 16, color: Colors.white),
+              style: const TextStyle(fontSize: 16, color: Colors.white),
             ),
             Text(
-              "$num",
-              style: TextStyle(fontSize: 16, color: Colors.white),
+              num,
+              style: const TextStyle(fontSize: 16, color: Colors.white),
             ),
           ],
         ),
-        Divider(thickness: 0.2),
+        const Divider(thickness: 0.2),
       ],
     );
   }
@@ -370,7 +374,7 @@ class ReuseRow extends StatelessWidget {
   String temp;
   String icon;
 
-  ReuseRow(this.title, this.temp, this.icon, this.title1);
+  ReuseRow(this.title, this.temp, this.icon, this.title1, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -383,13 +387,13 @@ class ReuseRow extends StatelessWidget {
           children: [
             Text(
               title,
-              style: TextStyle(fontSize: 18, color: Colors.white),
+              style: const TextStyle(fontSize: 18, color: Colors.white),
               softWrap: true,
               overflow: TextOverflow.ellipsis,
             ),
             Text(
               title1,
-              style: TextStyle(fontSize: 16, color: Colors.white),
+              style: const TextStyle(fontSize: 16, color: Colors.white),
               softWrap: true,
               overflow: TextOverflow.ellipsis,
             ),
@@ -397,7 +401,7 @@ class ReuseRow extends StatelessWidget {
         ),
         Text(
           temp,
-          style: TextStyle(fontSize: 18, color: Colors.white),
+          style: const TextStyle(fontSize: 18, color: Colors.white),
           softWrap: true,
           overflow: TextOverflow.ellipsis,
         ),
